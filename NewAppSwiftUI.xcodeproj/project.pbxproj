@@ -11,6 +11,7 @@
 		D1FA3EC32C28376900517AB0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FA3EC22C28376900517AB0 /* ContentView.swift */; };
 		D1FA3EC52C28376B00517AB0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1FA3EC42C28376B00517AB0 /* Assets.xcassets */; };
 		D1FA3EC82C28376B00517AB0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1FA3EC72C28376B00517AB0 /* Preview Assets.xcassets */; };
+		D1FA3ECF2C28379800517AB0 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FA3ECE2C28379800517AB0 /* SplashScreenView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		D1FA3EC22C28376900517AB0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D1FA3EC42C28376B00517AB0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D1FA3EC72C28376B00517AB0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		D1FA3ECE2C28379800517AB0 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 			children = (
 				D1FA3EC02C28376900517AB0 /* NewAppSwiftUIApp.swift */,
 				D1FA3EC22C28376900517AB0 /* ContentView.swift */,
+				D1FA3ECE2C28379800517AB0 /* SplashScreenView.swift */,
 				D1FA3EC42C28376B00517AB0 /* Assets.xcassets */,
 				D1FA3EC62C28376B00517AB0 /* Preview Content */,
 			);
@@ -139,6 +142,7 @@
 			files = (
 				D1FA3EC32C28376900517AB0 /* ContentView.swift in Sources */,
 				D1FA3EC12C28376900517AB0 /* NewAppSwiftUIApp.swift in Sources */,
+				D1FA3ECF2C28379800517AB0 /* SplashScreenView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,17 +279,19 @@
 				DEVELOPMENT_TEAM = Y76A5ZX74W;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NewAppSwiftUI/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = vdnkd.NewAppSwiftUI;
+				PRODUCT_BUNDLE_IDENTIFIER = vdnkd.NAppSwiftUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -304,17 +310,19 @@
 				DEVELOPMENT_TEAM = Y76A5ZX74W;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NewAppSwiftUI/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = vdnkd.NewAppSwiftUI;
+				PRODUCT_BUNDLE_IDENTIFIER = vdnkd.NAppSwiftUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
