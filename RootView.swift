@@ -1,8 +1,15 @@
-//
-//  RootView.swift
-//  NewAppSwiftUI
-//
-//  Created by Dmitry Vdovenko on 29.06.2024.
-//
+import SwiftUI
 
-import Foundation
+struct RootView: View {
+    @State private var isActive = false
+    
+    var body: some View {
+        ZStack {
+            if isActive {
+                TimerView()
+            } else {
+                SplashScreen(isActive: $isActive)
+            }
+        }
+    }
+}

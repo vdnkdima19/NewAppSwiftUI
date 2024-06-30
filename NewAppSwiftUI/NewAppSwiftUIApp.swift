@@ -4,7 +4,7 @@ import SwiftUI
 struct NewAppSwiftUIApp: App {
     var body: some Scene {
         WindowGroup {
-            SplashScreenView()
+            RootView()
         }
     }
 }
