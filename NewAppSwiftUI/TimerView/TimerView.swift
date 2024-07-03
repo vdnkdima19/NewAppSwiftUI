@@ -3,14 +3,14 @@ import SwiftUI
 struct TimerView: View {
     @State private var timeRemaining: TimeInterval = 0
     @State private var timer: Timer?
-    @State private var inputText: String = ""
-    @State private var showError = false
     @State private var showAlert: Bool = false
     @State private var textColor: Color = .white
     
+    @State private var minutes: Int = 0
+    @State private var seconds: Int = 0
+    
     let titleTextAlert: String = "Увага"
     let textMessageAlert: String = "Таймер закінчився!"
-    let textMessageErrorAlert: String = "Введіть коректне значення!"
     
     let imagePause = Image(systemName: "pause.circle")
     let imagePlay = Image(systemName: "play.circle")
@@ -22,78 +22,87 @@ struct TimerView: View {
             VStack {
                 Spacer()
                 
+                // MARK: Timer Display
                 ZStack {
                     Circle()
-                        .stroke(lineWidth: 20)
+                        .stroke(lineWidth: 10)
                         .opacity(0.5)
                         .foregroundColor(textColor)
-                        .padding(20)
-                    
+                        .padding(10)
                     Text(formattedTime())
-                        .font(.largeTitle)
+                        .font(.system(size: 46))
                         .fontWeight(.bold)
                         .foregroundColor(textColor)
                 }
                 
                 Spacer()
                 
-                HStack {
-                    TextField("Введіть значення", text: $inputText)
-                        .textFieldStyle(.roundedBorder)
-                        .padding()
-                        .keyboardType(.numberPad)
-                        .onChange(of: inputText) { newValue in
-                            inputText = newValue.filter { $0.isNumber }
-                        }
-                    
-                    Button(action: {
-                       if timer == nil {
-                           if inputText.isEmpty {
-                               showError = true
-                           } else if let time = TimeInterval(inputText) {
-                               timeRemaining = time
-                               startTimer()
-                           } else {
-                               showError = true
-                           }
-                       } else {
-                           stopTimer()
-                       }
-                   }) {
-                       Text(timer == nil ? "Запустити" : "Зупинити")
-                   }
-                   .padding()
-                   .buttonStyle(.borderedProminent)
-                   .tint((timer == nil || showError || showAlert) ? Color.green : Color.red)
-               }
+                // MARK: Time Picker
+                if timer == nil || timeRemaining <= 0 {
+                    HStack {
+                        CustomTimePicker(minutes: $minutes, seconds: $seconds, timerRunning: timer != nil)
+                        
+                        Spacer()
+                    }
+                }
                 
+                // MARK: Control Buttons
                 HStack {
                     if timer == nil || timeRemaining <= 0 {
                         setImage(image: imagePlay)
                             .onTapGesture {
-                                startTimer()
+                                if minutes > 0 || seconds > 0 {
+                                    startTimer()
+                                }
                             }
+                            .disabled(!(minutes > 0 || seconds > 0))
                     } else {
                         setImage(image: imagePause)
                             .onTapGesture {
                                 pauseTimer()
                             }
                     }
+                    
+                    Spacer()
+                    
+                    Button(action: {
+                        if minutes > 0 || seconds > 0 {
+                            if timer == nil || timeRemaining <= 0 {
+                                startTimer()
+                            } else {
+                                stopTimer()
+                            }
+                        }
+                    }, label: {
+                        ZStack {
+                            Circle()
+                                .frame(width: 110, height: 110)
+                            Text(timer == nil || timeRemaining <= 0 ? "Запустити" : "Зупинити")
+                                .foregroundColor(.white)
+                                .font(.title3)
+                        }
+                        .foregroundColor((timer == nil || timeRemaining <= 0) ? .green : .red)
+                        .disabled(!(minutes > 0 || seconds > 0))
+                    })
                 }
                 .padding()
-                Spacer()
+
             }
             customOverlay()
         }
     }
     
+    // MARK: Methods
     private func formattedTime() -> String {
-        let minutes = Int(timeRemaining) / 60
-        let seconds = Int(timeRemaining) % 60
+        let totalSeconds = (minutes * 60) + seconds
+        let minutes = (totalSeconds % 3600) / 60
+        let seconds = totalSeconds % 60
         return String(format: "%02d:%02d", minutes, seconds)
     }
     
     private func startTimer() {
+        let totalSeconds = (minutes * 60) + seconds
+        timeRemaining = TimeInterval(totalSeconds)
         timer?.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
             if timeRemaining > 0 {
@@ -101,6 +110,8 @@ struct TimerView: View {
                 if timeRemaining <= 5 {
                     textColor = .red
                 }
+                self.seconds = Int(timeRemaining) % 60
+                self.minutes = Int(timeRemaining) / 60
             } else {
                 stopTimer()
                 showAlert = true
@@ -112,8 +123,8 @@ struct TimerView: View {
         timer?.invalidate()
         timer = nil
         textColor = .white
-        inputText = ""
-        timeRemaining = 0
+        minutes = 0
+        seconds = 0
     }
     
     private func pauseTimer() {
@@ -133,27 +144,6 @@ struct TimerView: View {
                    
                     Button("OK") {
                         showAlert = false
-                    }
-                    
-                    .padding()
-                    .font(.title2)
-                    .foregroundColor(.blue)
-                    
-                }
-                .background(Color.white)
-                .cornerRadius(5)
-                .padding()
-            }
-            if showError {
-                Color.black.opacity(0.7)
-                    .edgesIgnoringSafeArea(.all)
-                
-                VStack {
-                    setTitleText(someText: titleTextAlert)
-                    setMessageText(someText: textMessageErrorAlert)
-            
-                    Button("OK") {
-                        showError = false
                     }
                     
                     .padding()
@@ -186,7 +176,7 @@ struct TimerView: View {
     @ViewBuilder
     private func setImage(image: Image) -> some View {
         image
-            .font(.system(size: 60))
+            .font(.system(size: 110))
             .foregroundColor(.white)
     }
 }

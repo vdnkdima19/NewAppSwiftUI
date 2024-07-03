@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D10333CC2C3575DA002537C5 /* CustomTimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10333CB2C3575DA002537C5 /* CustomTimePicker.swift */; };
 		D1EBE11E2C30408D005FBC1A /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EBE11D2C30408D005FBC1A /* RootView.swift */; };
 		D1EBE1212C3042CB005FBC1A /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EBE1202C3042CB005FBC1A /* SplashScreen.swift */; };
 		D1EBE1232C304302005FBC1A /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EBE1222C304302005FBC1A /* TimerView.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D10333CB2C3575DA002537C5 /* CustomTimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTimePicker.swift; sourceTree = "<group>"; };
 		D1EBE11D2C30408D005FBC1A /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		D1EBE1202C3042CB005FBC1A /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
 		D1EBE1222C304302005FBC1A /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
@@ -40,6 +42,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D10333CD2C3576CC002537C5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D10333CB2C3575DA002537C5 /* CustomTimePicker.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		D16615AB2C2C314F00B36EDC /* OnBoardingView */ = {
 			isa = PBXGroup;
 			children = (
@@ -54,6 +64,7 @@
 			children = (
 				D1EBE1202C3042CB005FBC1A /* SplashScreen.swift */,
 				D1EBE1222C304302005FBC1A /* TimerView.swift */,
+				D10333CD2C3576CC002537C5 /* Model */,
 			);
 			path = TimerView;
 			sourceTree = "<group>";
@@ -171,6 +182,7 @@
 				D1FA3EC32C28376900517AB0 /* ContentView.swift in Sources */,
 				D1FA3EC12C28376900517AB0 /* NewAppSwiftUIApp.swift in Sources */,
 				D1FA3ECF2C28379800517AB0 /* SplashScreenView.swift in Sources */,
+				D10333CC2C3575DA002537C5 /* CustomTimePicker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
