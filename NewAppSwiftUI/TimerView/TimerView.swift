@@ -13,7 +13,6 @@ struct TimerView: View {
     let textMessageAlert: String = "Таймер закінчився!"
     
     let imagePause = Image(systemName: "pause.circle")
-    let imagePlay = Image(systemName: "play.circle")
     
     var body: some View {
         ZStack {
@@ -40,7 +39,7 @@ struct TimerView: View {
                 // MARK: Time Picker
                 if timer == nil || timeRemaining <= 0 {
                     HStack {
-                        CustomTimePicker(minutes: $minutes, seconds: $seconds, timerRunning: timer != nil)
+                        CustomTimePickerView(minutes: $minutes, seconds: $seconds, timerRunning: timer != nil)
                         
                         Spacer()
                     }
@@ -48,20 +47,11 @@ struct TimerView: View {
                 
                 // MARK: Control Buttons
                 HStack {
-                    if timer == nil || timeRemaining <= 0 {
-                        setImage(image: imagePlay)
-                            .onTapGesture {
-                                if minutes > 0 || seconds > 0 {
-                                    startTimer()
-                                }
-                            }
-                            .disabled(!(minutes > 0 || seconds > 0))
-                    } else {
-                        setImage(image: imagePause)
-                            .onTapGesture {
-                                pauseTimer()
-                            }
-                    }
+                    setImage(image: imagePause)
+                        .onTapGesture {
+                            pauseTimer()
+                        }
+                        .opacity(timer != nil ? 1.0 : 0.0)
                     
                     Spacer()
                     
@@ -86,6 +76,7 @@ struct TimerView: View {
                     })
                 }
                 .padding()
+
 
             }
             customOverlay()
@@ -183,4 +174,49 @@ struct TimerView: View {
 
 #Preview {
     TimerView()
+}
+
+struct CustomTimePickerView: View {
+    @Binding var minutes: Int
+    @Binding var seconds: Int
+    var timerRunning: Bool
+    
+    let minutesText = "хв"
+    let secondsText = "c"
+
+    var body: some View {
+        HStack {
+            if !timerRunning {
+                Picker("minutes", selection: $minutes) {
+                    ForEach(0..<60) { minute in
+                        Text("\(minute)")
+                            .foregroundColor(.gray)
+                            .font(.title2)
+                            .tag(minute)
+                    }
+                }
+                setText(someText: minutesText)
+
+                Picker("seconds", selection: $seconds) {
+                    ForEach(0..<60) { second in
+                        Text("\(second)")
+                            .foregroundColor(.gray)
+                            .font(.title2)
+                            .tag(second)
+                    }
+                }
+                setText(someText: secondsText)
+            }
+        }
+        .pickerStyle(.wheel)
+        .opacity(timerRunning ? 0.0 : 1.0)
+        .disabled(timerRunning)
+    }
+    
+    @ViewBuilder
+    private func setText(someText: String) -> some View {
+        Text(someText)
+            .foregroundColor(.white)
+            .font(.title)
+    }
 }

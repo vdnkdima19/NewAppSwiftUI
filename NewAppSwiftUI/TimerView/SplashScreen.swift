@@ -31,7 +31,6 @@ struct SplashScreen: View {
                     // MARK: Author Info
                     setText(someText: teamInfoText)
                 }
-                
             }
         }
     }
